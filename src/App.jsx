@@ -43,8 +43,12 @@ export default function App() {
 
   const bg = BG[current % BG.length]
 
-  // Android address bar inherits the current section color.
+  // Paint the section color on html/body so it fills edge-to-edge under the iOS
+  // status bar and Safari's translucent toolbar (they blur the page behind them).
+  // theme-color tints Android's chrome. This is what makes the system bars inherit the color.
   useEffect(() => {
+    document.documentElement.style.background = bg
+    document.body.style.background = bg
     document.querySelector('meta[name=theme-color]')?.setAttribute('content', bg)
   }, [bg])
 
