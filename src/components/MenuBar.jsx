@@ -1,9 +1,8 @@
-import { SECTIONS } from '@/content/sections'
 import { cn } from '@/lib/utils'
 
 // Top bar: translucent + blurred, tinted by the current section's color so the
-// browser/status bar area inherits it. Content scrolls under it (iOS blur effect).
-export function MenuBar({ lang, current, onGo, open, setOpen, bg }) {
+// browser/status bar area inherits it. Sections come from the decrypted content.
+export function MenuBar({ sections, lang, current, onGo, open, setOpen, bg }) {
   return (
     <>
       <header
@@ -24,7 +23,7 @@ export function MenuBar({ lang, current, onGo, open, setOpen, bg }) {
           style={{ background: bg + 'f2' }}
           onClick={() => setOpen(false)}
         >
-          {SECTIONS.map((s, i) => (
+          {sections.map((s, i) => (
             <button
               key={s.id}
               onClick={() => { onGo(i); setOpen(false) }}
